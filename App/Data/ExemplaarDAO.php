@@ -21,7 +21,7 @@ class ExemplaarDAO {
     } 
 
     public function create(int $filmId, int $nr): Exemplaar {
-        // Controleren of een exemplaar met het gegeven nummer al bestaat
+        
         $sqlCheck = "SELECT id FROM exemplaren WHERE nr = :nr";
         $stmtCheck = $this->db->prepare($sqlCheck);
         $stmtCheck->bindParam(':nr', $nr, PDO::PARAM_INT);
@@ -31,7 +31,7 @@ class ExemplaarDAO {
             throw new ExemplaarBestaatException("Een exemplaar met nummer $nr bestaat al.");
         }
 
-        // Exemplaar toevoegen aan de database
+        
         $sql = "INSERT INTO exemplaren (filmid, nr) VALUES (:filmId, :nr)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':filmId', $filmId, PDO::PARAM_INT);
@@ -40,7 +40,7 @@ class ExemplaarDAO {
 
         $newExemplaarId = (int) $this->db->lastInsertId();
 
-        $film = $this->filmDAO->getById($filmId); // Gebruik de geïnjecteerde filmDAO
+        $film = $this->filmDAO->getById($filmId); 
         return new Exemplaar($newExemplaarId, $nr, $film, true);
     }
 
@@ -96,7 +96,7 @@ public function huurExemplaar(int $nr): bool {
     $stmt->bindParam(':nr', $nr, PDO::PARAM_INT);
     $stmt->execute();
     
-    return $stmt->rowCount() > 0; // Geeft terug of er daadwerkelijk een record is bijgewerkt
+    return $stmt->rowCount() > 0; 
 }
 
 public function terugbrengExemplaar(int $nr): bool {
@@ -105,7 +105,7 @@ public function terugbrengExemplaar(int $nr): bool {
     $stmt->bindParam(':nr', $nr, PDO::PARAM_INT);
     $stmt->execute();
     
-    return $stmt->rowCount() > 0; // Geeft terug of er daadwerkelijk een record is bijgewerkt
+    return $stmt->rowCount() > 0; 
 }
   
 }

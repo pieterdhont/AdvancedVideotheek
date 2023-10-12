@@ -1,7 +1,7 @@
 {% extends 'base.twig' %} {% block title %}Videotheek{% endblock %} {% block
 content %}
 <div class="container">
-    <!-- Linker sectie met formulieren -->
+   
     <div class="left-section">
         <h2>Zoeken op nummer</h2>
         <form action="zoekOpNummer.php" method="post">
@@ -23,7 +23,7 @@ content %}
         <br />
         <a href="logout.php">Uitloggen</a>
     </div>
-    <!-- Rechter sectie met tabel -->
+
     <div class="right-section">
         <table>
             <tr>
@@ -58,7 +58,7 @@ content %}
                 </td>
                 <td>
                     <form action="verwijderExemplaar.php" method="post">
-                        <!-- Custom dropdown for verwijderExemplaar (for example) -->
+                      
                         <div class="custom-dropdown {% if combinedNrList is empty %}disabled{% endif %}">
                             <div class="selected-option" data-selected-value="-1">
                                 - Selecteer -
@@ -95,7 +95,7 @@ content %}
                         </button>
                     </form>
 
-                    <!-- Terugbrengen form -->
+             
                     <form action="terugbrengExemplaar.php" method="post">
                         <div class="custom-dropdown {% if not availableForReturn[film.getId()] %}disabled{% endif %}">
                             <div class="selected-option" data-selected-value="-1">

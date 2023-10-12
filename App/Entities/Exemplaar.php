@@ -9,7 +9,7 @@ class Exemplaar
 {
     private int $id;
     private int $nr;
-    private Film $film;  // Verwijzing naar de Film entity
+    private Film $film;  
     private bool $aanwezig;
 
     public function __construct(int $id, int $nr, Film $film, bool $aanwezig)

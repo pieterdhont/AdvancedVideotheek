@@ -20,13 +20,13 @@ $gebruikerService->authenticateUser($_SESSION);
 $deleteExemplaarNr = $_POST['deleteExemplaarNr'] ?? null;
 
 if ($deleteExemplaarNr) {
-    if ($deleteExemplaarNr === "-1") {  // Controleer of de waarde -1 is
+    if ($deleteExemplaarNr === "-1") {  
         $_SESSION['message'] = "Selecteer een geldig exemplaar om te verwijderen.";
         header("Location: toonAlleFilms.php");
         exit();
     }
 
-    // Verkrijg het exemplaar op basis van het nummer
+    
     $exemplaar = $exemplaarService->getExemplaarByNr((int)$deleteExemplaarNr);
     
     if (!$exemplaar || count($exemplaar) == 0) {
@@ -40,7 +40,7 @@ if ($deleteExemplaarNr) {
         }
     }
     
-    // Redirect terug naar de lijstpagina
+    
     header("Location: toonAlleFilms.php");
     exit();
 }

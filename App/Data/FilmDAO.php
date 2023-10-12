@@ -43,7 +43,7 @@ class FilmDAO {
   }
 
   public function create(string $titel): Film {
-    // Controleren of een film met dezelfde titel al bestaat
+    
     $sqlCheck = "SELECT id FROM films WHERE titel = :titel";
     $stmtCheck = $this->db->prepare($sqlCheck);
     $stmtCheck->bindParam(':titel', $titel, PDO::PARAM_STR);
@@ -53,7 +53,7 @@ class FilmDAO {
         throw new TitelBestaatException("Een film met de titel $titel bestaat al.");
     }
 
-    // Film toevoegen aan de database
+    
     $sql = "INSERT INTO films (titel) VALUES (:titel)";
     $stmt = $this->db->prepare($sql);
     $stmt->bindParam(':titel', $titel, PDO::PARAM_STR);

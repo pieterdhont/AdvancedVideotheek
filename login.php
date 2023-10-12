@@ -16,7 +16,7 @@ $naam = trim($_POST['naam'] ?? '');
 $wachtwoord = trim($_POST['wachtwoord'] ?? '');
 $error = "";
 
-// CSRF token check
+
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
