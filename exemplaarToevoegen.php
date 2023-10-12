@@ -22,7 +22,7 @@ $nummer = $_POST['nummer'] ?? null;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($filmId)) {
         $_SESSION['message'] = "Gelieve een titel te selecteren.";
-    } elseif (empty($nummer) || $nummer <= 0) {
+    } elseif (empty($nummer) || $nummer <= 0 || $nummer > 2147483647) {
         $_SESSION['message'] = "Gelieve een geldig exemplaarnummer in te voeren.";
     } else {
         try {
