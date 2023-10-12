@@ -1,0 +1,29 @@
+
+<h2>Voeg een nieuw exemplaar toe</h2>
+
+<form action="exemplaarToevoegen.php" method="post">
+    
+    <label for="filmId">Kies een titel:</label>
+    
+    <div class="custom-dropdown upward">
+        <div class="selected-option" data-selected-value="">- Selecteer -</div>
+        <ul class="options-list hidden">
+            
+            {% for film in films %}
+                <li data-value="{{ film.getId() }}">{{ film.getTitel() }}</li>
+            {% endfor %}
+        </ul>
+        <input type="hidden" id="filmId" name="filmId" value="">
+    </div>
+    
+    <br>
+    <div class="form-group">
+    <label for="nummer">Voer nummer in:</label>
+    <input type="number" id="nummer" name="nummer">
+    </div>
+    
+    
+    <input type="submit" value="Toevoegen">
+</form>
+
+

@@ -1,0 +1,212 @@
+/* === ALGEMENE STIJLEN === */
+body {
+  background: linear-gradient(to bottom right, #e0e5ec, #b0c5d8, #f0f0f0);
+  font-family: "Roboto", sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+a {
+  color: #007BFF;
+  text-decoration:underline;
+  transition: color 0.3s ease;
+  padding: 2px 0;
+}
+
+a:hover {
+  color: #b30006;
+  text-decoration:none;
+}
+
+a:active {
+  color: #850000;
+}
+
+/* === MELDINGEN === */
+.success-message {
+  color: green;
+  padding: 10px;
+  border: 1px inset green;
+  margin-bottom: 10px;
+}
+
+/* === STATUS LABELS === */
+.available {
+  color: green;
+  font-weight: bold;
+}
+
+.rented {
+  color: red;
+}
+
+/* === TABEL STIJLEN === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  padding: 10px;
+  border: 1px solid #e0e5ec;
+  text-align: left;
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #e0e5ec;
+  text-align: center;
+}
+
+tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+/* === FORMULIER ELEMENTEN === */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  flex: 0 0 120px;
+  margin-right: 20px;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="password"] {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #e7eaed;
+  color: #333;
+  transition: border-color 0.3s;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+input[type="submit"],
+button {
+  padding: 5px 15px;
+  border: none;
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.6s ease;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: #0056b3;
+}
+
+input[type="submit"]:active,
+button:active {
+  transform: scale(0.95);
+  background-color: #003366;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  color: #888888;
+  cursor: not-allowed;
+}
+
+/* === CUSTOM DROPDOWN === */
+.custom-dropdown {
+  position: relative;
+  max-width: 300px;
+  padding: 0;
+  margin: 0;
+}
+
+.selected-option,
+.options-list li {
+  padding: 1px 5px;
+  cursor: pointer;
+  margin: 5px 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+  background-color: #d3dee9;
+}
+
+.selected-option {
+  border: 1px solid #ccc;
+}
+
+.selected-option:hover,
+.options-list li:hover {
+  background-color: #92a1b0;
+  color: #ffffff;
+}
+
+.options-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border: 1px solid #ccc;
+  background: #e7eaed;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  list-style-type: none;
+  z-index: 1000;
+  border-radius: 4px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0;
+}
+
+.options-list li {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.custom-dropdown.upward .options-list {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  bottom: 100%;
+  top: unset;
+}
+
+.custom-dropdown.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* === LAYOUT SECTIES === */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.left-section {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.right-section {
+  flex: 2;
+}
+
+/* === UTILITY STIJLEN === */
+.hidden {
+  display: none;
+}

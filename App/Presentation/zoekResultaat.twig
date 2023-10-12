@@ -1,0 +1,41 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+<!-- zoekResultaat.twig -->
+
+<h2>Zoekresultaten</h2>
+<table border="1">
+    <tr>
+        <th>Film Titel</th>
+        <th>DVD Nummers</th>
+        <th>Aantal Aanwezig</th>
+    </tr>
+    {% if exemplaren %}
+        {% set filmTitel = exemplaren[0].getFilm().getTitel() %}
+        <tr>
+            <td>{{ filmTitel }}</td>
+            <td>
+                {% set aanwezigCount = 0 %}
+                {% for exemplaar in exemplaren %}
+                    {% if exemplaar.isAanwezig() %}
+                        <span class="available">{{ exemplaar.getNr() }}</span>
+                    {% else %}
+                        <span class="rented">{{ exemplaar.getNr() }}</span>
+                    {% endif %}
+                    {% if not loop.last %}
+                        -
+                    {% endif %}
+                    {% set aanwezigCount = exemplaar.isAanwezig() ? aanwezigCount + 1 : aanwezigCount %}
+                {% endfor %}
+            </td>
+            <td>{{ aanwezigCount }}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">Geen resultaten gevonden voor het opgegeven nummer.</td>
+        </tr>
+    {% endif %}
+</table>
+<br>
+<a href="toonAlleFilms.php">Terug naar volledige lijst</a>  
+{% endblock %}

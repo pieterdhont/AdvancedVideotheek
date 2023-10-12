@@ -1,0 +1,123 @@
+{% extends 'base.twig' %} {% block title %}Videotheek{% endblock %} {% block
+content %}
+<div class="container">
+    <!-- Linker sectie met formulieren -->
+    <div class="left-section">
+        <h2>Zoeken op nummer</h2>
+        <form action="zoekOpNummer.php" method="post">
+            <div class="form-group">
+                <label for="nummer">Voer nummer in:</label>
+                <input type="number" id="nummer" name="nummer" />
+            </div>
+            <input type="submit" value="Zoeken" />
+        </form>
+        <br />
+        {% include 'titelToevoegen.twig'%} {% include 'exemplaarToevoegen.twig' %}
+        <br />
+        {% if isSearching %} {% include 'zoekResultaat.twig' %} {% else %} {% if
+        message %}
+        <div class="success-message">
+            {{ message }}
+        </div>
+        {% endif %}
+        <br />
+        <a href="logout.php">Uitloggen</a>
+    </div>
+    <!-- Rechter sectie met tabel -->
+    <div class="right-section">
+        <table>
+            <tr>
+                <th>Acties</th>
+                <th>Film Titel</th>
+                <th>DVD Nummers</th>
+                <th>Verwijder Exemplaar</th>
+                <th>Aantal Aanwezig</th>
+                <th>Huren/Terugbrengen</th>
+            </tr>
+            {% for film in films %}
+            <tr>
+                <td>
+                    <form action="verwijderFilm.php" method="post">
+                        <button type="submit" name="deleteFilmId" value="{{ film.getId() }}">
+                            Verwijder Film
+                        </button>
+                    </form>
+                </td>
+                <td>{{ reformatTitle(film.getTitel()) }}</td>
+                <td>
+                    {% set aanwezigCount = 0 %} {% set combinedNrList =
+                    (availableForRent[film.getId()]|default([])|merge(availableForReturn[film.getId()]|default([])))|sort
+                    %} {% for nr in combinedNrList %} {% if nr in
+                    availableForRent[film.getId()]|default([]) %}
+                    <span class="available">{{ nr }}</span>
+                    {% else %}
+                    <span class="rented">{{ nr }}</span>
+                    {% endif %} {% if not loop.last %} - {% endif %} {% if nr in
+                    availableForRent[film.getId()]|default([]) %} {% set aanwezigCount =
+                    aanwezigCount + 1 %} {% endif %} {% endfor %}
+                </td>
+                <td>
+                    <form action="verwijderExemplaar.php" method="post">
+                        <!-- Custom dropdown for verwijderExemplaar (for example) -->
+                        <div class="custom-dropdown {% if combinedNrList is empty %}disabled{% endif %}">
+                            <div class="selected-option" data-selected-value="-1">
+                                - Selecteer -
+                            </div>
+                            <ul class="options-list hidden">
+                                {% for nr in combinedNrList %}
+                                <li data-value="{{ nr }}">{{ nr }}</li>
+                                {% endfor %}
+                            </ul>
+                            <input type="hidden" name="deleteExemplaarNr" value="-1" />
+                        </div>
+                        <button type="submit" {% if combinedNrList is empty %}disabled{% endif %}>
+                            Verwijder Exemplaar
+                        </button>
+                    </form>
+                </td>
+                <td>{{ aanwezigCount }}</td>
+                <td>
+                    <!-- Huur form -->
+                    <form action="huurExemplaar.php" method="post">
+                        <div class="custom-dropdown {% if not availableForRent[film.getId()] %}disabled{% endif %}">
+                            <div class="selected-option" data-selected-value="-1">
+                                - Selecteer -
+                            </div>
+                            <ul class="options-list hidden">
+                                {% for nr in availableForRent[film.getId()]|default([]) %}
+                                <li data-value="{{ nr }}">{{ nr }}</li>
+                                {% endfor %}
+                            </ul>
+                            <input type="hidden" name="huurExemplaarNr" value="-1" />
+                        </div>
+                        <button type="submit" {% if not availableForRent[film.getId()] %}disabled{% endif %}>
+                            Huur
+                        </button>
+                    </form>
+
+                    <!-- Terugbrengen form -->
+                    <form action="terugbrengExemplaar.php" method="post">
+                        <div class="custom-dropdown {% if not availableForReturn[film.getId()] %}disabled{% endif %}">
+                            <div class="selected-option" data-selected-value="-1">
+                                - Selecteer -
+                            </div>
+                            <ul class="options-list hidden">
+                                {% for nr in availableForReturn[film.getId()]|default([]) %}
+                                <li data-value="{{ nr }}">{{ nr }}</li>
+                                {% endfor %}
+                            </ul>
+                            <input type="hidden" name="terugbrengExemplaarNr" value="-1" />
+                        </div>
+                        <button type="submit" {% if not availableForReturn[film.getId()] %}disabled{% endif %}>
+                            Terug
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
