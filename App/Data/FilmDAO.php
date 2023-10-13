@@ -17,7 +17,11 @@ class FilmDAO {
   }
 
   public function getAll(): array {
-    $sql = "SELECT * FROM films";
+    $sql = "SELECT * FROM films ORDER BY 
+            CASE 
+                WHEN titel LIKE 'The %' THEN SUBSTRING(titel, 5)
+                ELSE titel
+            END";
     $resultSet = $this->db->query($sql);
 
     $films = array();
