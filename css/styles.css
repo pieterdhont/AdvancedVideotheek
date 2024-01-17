@@ -1,6 +1,9 @@
 /* === ALGEMENE STIJLEN === */
 body {
-  background: linear-gradient(to bottom right, #e0e5ec, #b0c5d8, #a6a8e0);
+  background: #7F7FD5;  /* fallback for old browsers */
+
+background: linear-gradient(to bottom right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   font-family: "Roboto", sans-serif;
   background-repeat: no-repeat;
   background-attachment: fixed;
