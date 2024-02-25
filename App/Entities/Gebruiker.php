@@ -33,4 +33,3 @@ class Gebruiker {
         return $this->wachtwoord;
     }
 }
-?>
