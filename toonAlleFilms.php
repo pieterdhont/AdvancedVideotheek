@@ -32,4 +32,4 @@ echo $twig->render('filmList.twig', [
     'availableForReturn' => $availableForReturn,
     'exemplaren' => $exemplaren
 ]);
-?>
+

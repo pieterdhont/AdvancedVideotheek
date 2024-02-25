@@ -17,4 +17,4 @@ $templateVariables = [
 ];
 
 echo $twig->render('login.twig', $templateVariables);
-?>
+

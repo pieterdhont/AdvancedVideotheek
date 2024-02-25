@@ -40,5 +40,5 @@ if ($huurExemplaarNr) {
     header("Location: toonAlleFilms.php");
     exit();
 }
-?>
+
 

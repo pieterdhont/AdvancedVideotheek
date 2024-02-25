@@ -41,5 +41,5 @@ if ($terugbrengExemplaarNr) {
     header("Location: toonAlleFilms.php");
     exit();
 }
-?>
+
 
